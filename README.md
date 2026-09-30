@@ -57,6 +57,10 @@ pytest -q
 
 GitHub Pages can publish static sites, but it cannot run this FastAPI backend. Push this repository to GitHub to get automated tests through `.github/workflows/tests.yml`, then deploy the same GitHub repository to a Python host such as Render, Railway, or Fly.io. Use the build command `pip install -r requirements.txt` and start command `uvicorn backend.app:app --host 0.0.0.0 --port $PORT`. Configure `CASEBRIDGE_AI_PROVIDER=local-demo` and `MAX_UPLOAD_BYTES=10485760` in that host's environment settings; do not add a `.env` file to GitHub.
 
+### Vercel
+
+Vercel can detect the root `app.py` entry point directly; it imports `backend.app:app`. The same custom entry point is also declared in `pyproject.toml`. After pushing both root files to GitHub, open the failed Vercel deployment and select **Redeploy**.
+
 ## API Endpoints
 
 See [API documentation](docs/api.md). Health: `GET /api/health`.
