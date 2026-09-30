@@ -1,0 +1,1 @@
+"""Typed CaseBridge domain models."""
