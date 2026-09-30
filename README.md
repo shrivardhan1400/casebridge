@@ -20,6 +20,10 @@ Tell Your Story → Understand Situation → Complete Information → Find Docum
 
 See [architecture](docs/architecture.md). The backend is intentionally modular: extraction, guidance, clarification, journey, and review package services are separate, typed modules.
 
+## Innovation and SDG 9 Alignment
+
+CaseBridge is a modular civic-tech information infrastructure: a source-aware case model, cross-source clarification engine, state-driven journey engine, deterministic demo extractor, notice explainer, and human-review package builder. It advances **SDG 9: Industry, Innovation and Infrastructure** by making complex information organization reproducible, reviewable, and deployable without automating legal decisions. See the executable feature map in [evaluation alignment](docs/evaluation-alignment.md).
+
 ## AI Role, Document Intelligence, and Human-in-the-Loop
 
 The default `LocalDemoExtractor` is a deterministic **Prototype extraction engine**, not a real LLM. It can be replaced behind `BaseExtractor`. Recommendations explain what may help without claiming legal necessity or authenticity. Conflicts remain open until a user clarifies them; packages are labeled for human review.
@@ -59,11 +63,11 @@ GitHub Pages can publish static sites, but it cannot run this FastAPI backend. P
 
 ### Vercel
 
-Vercel can detect the root `app.py` entry point directly; it imports `backend.app:app`. The same custom entry point is also declared in `pyproject.toml`. After pushing both root files to GitHub, open the failed Vercel deployment and select **Redeploy**.
+Vercel can detect the root `app.py` entry point directly; it imports `backend.app:app`. The same custom entry point and runtime dependencies are declared in `pyproject.toml`. After pushing both root files to GitHub, open the failed Vercel deployment and select **Redeploy**.
 
 ## API Endpoints
 
-See [API documentation](docs/api.md). Health: `GET /api/health`.
+See [API documentation](docs/api.md). Health: `GET /api/health`; additional live flows include `POST /api/demo/rental`, `POST /api/notices/explain`, document-text analysis, source maps, review-package retrieval, and follow-up completion.
 
 ## Demo Case
 

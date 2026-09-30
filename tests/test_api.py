@@ -18,3 +18,14 @@ def test_story_document_and_completion_flow() -> None:
     assert client.post(f"/api/cases/{case_id}/documents", json={"filename": "refund.pdf", "content_type": "application/pdf", "size_bytes": 123}).status_code == 201
     assert client.post(f"/api/cases/{case_id}/complete").json()["message"] == "Marked as complete by you."
     assert client.post(f"/api/cases/{case_id}/reopen").json()["status"] == "active"
+
+
+def test_demo_notice_analysis_and_source_map_endpoints() -> None:
+    demo = client.post("/api/demo/rental")
+    assert demo.status_code == 201
+    case_id = demo.json()["case"]["id"]
+    notice = client.post("/api/notices/explain", json={"visible_text": "Please bring receipt on 10 October 2026."})
+    assert notice.status_code == 200
+    analysis = client.post(f"/api/cases/{case_id}/documents/analyze", json={"filename": "refund.txt", "visible_text": "Refund ₹25,000 on 05 July 2026"})
+    assert analysis.status_code == 201
+    assert client.get(f"/api/cases/{case_id}/source-map").status_code == 200
